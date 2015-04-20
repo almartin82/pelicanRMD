@@ -1,0 +1,50 @@
+Title: My super title
+Date: 2015-04-20
+Category: yeah
+Tags: thats, awesome
+Slug: my-super-post
+Author: Alexis Metaireau
+Summary: Short version for index and feeds
+
+```{r pelican_conf, echo=FALSE}
+
+#set this to true when ready to publish
+ready_to_publish = TRUE
+
+library(knitr)
+hook_plot <- knit_hooks$get('plot')
+
+knit_hooks$set(plot=function(x, options) {
+    if (!is.null(options$pelican.publish) && options$pelican.publish) {
+        x <- paste0("{filename}", x)
+    }
+    hook_plot(x, options)
+})
+opts_chunk$set(dev = 'Cairo_svg')
+opts_chunk$set(pelican.publish = ready_to_publish)
+
+# knitr Rmd vs. pelican generation logic here
+# for instance, if .Rproj vs pelican content filepaths differ, set a dynamic prefix here
+if (ready_to_publish) {
+   
+} else {
+  
+}
+
+```
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
